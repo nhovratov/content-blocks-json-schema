@@ -1,6 +1,6 @@
 {
 	"$schema": "http://json-schema.org/draft-07/schema",
-	"$id": "https://github.com/nhovratov/content-blocks-json-schema/tree/main/Build/schema/record-type.schema.json",
+	"$id": "https://github.com/nhovratov/content-blocks-json-schema/blob/main/record-type.schema.json",
 	"title": "Record Type",
 	"description": "TYPO3 CMS Content Blocks Record Type",
 	"allOf": [

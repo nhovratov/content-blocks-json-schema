@@ -1,6 +1,6 @@
 {
 	"$schema": "http://json-schema.org/draft-07/schema",
-	"$id": "https://github.com/nhovratov/content-blocks-json-schema/tree/main/Build/schema/content-type.schema.json",
+	"$id": "https://raw.githubusercontent.com/nhovratov/content-blocks-json-schema/main/content-type.schema.json",
 	"title": "Content Type",
 	"description": "TYPO3 CMS Content Blocks Content Type",
 	"required": ["name"],

@@ -1,6 +1,6 @@
 {
 	"$schema": "http://json-schema.org/draft-07/schema",
-	"$id": "https://github.com/nhovratov/content-blocks-json-schema/tree/main/Build/schema/field-type.schema.json",
+	"$id": "https://raw.githubusercontent.com/nhovratov/content-blocks-json-schema/main/field-type.schema.json",
 	"title": "Field Type",
 	"description": "TYPO3 CMS Content Blocks Field Type",
 	"type": "object",
