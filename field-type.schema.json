@@ -518,16 +518,17 @@
 						"description": "If disabled, an additional image or media palette will not be rendered."
 					},
 					"allowed": {
-						"oneOf": [
+						"anyOf": [
 							{
-								"type": "string"
+								"type": "string",
+								"description": "Any string representing a file type, such as 'jpg', 'png', etc."
 							},
 							{
-								"type": "array"
+								"type": "string",
+								"enum": ["common-image-types", "common-media-types "],
+								"description": "List of allowed file types."
 							}
-						],
-						"description": "List of allowed file types.",
-						"examples": ["common-image-types", "common-media-types"]
+						]
 					},
 					"minitems": {
 						"type": "integer",
