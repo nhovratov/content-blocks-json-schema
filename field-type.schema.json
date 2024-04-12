@@ -20,8 +20,16 @@
 								"description": "Label of the item"
 							},
 							{
-								"type": "string",
-								"description": "Value transferred to the input field"
+								"oneOf": [
+									{
+										"type": "string",
+										"description": "Value transferred to the input field"
+									},
+									{
+										"type": "integer",
+										"description": "Value transferred to the input field"
+									}
+								]
 							}
 						]
 					}
