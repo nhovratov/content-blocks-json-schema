@@ -547,6 +547,38 @@
 			"if": {
 				"properties": {
 					"type": {
+						"const": "Folder"
+					}
+				}
+			},
+			"then": {
+				"properties": {
+					"recursive": {
+						"type": "boolean",
+						"description": "If selected, files in the selected folder will be resolved recursively."
+					},
+					"minitems": {
+						"type": "integer",
+						"description": "Minimum number of items."
+					},
+					"maxitems": {
+						"type": "integer",
+						"description": "Maximum number of items."
+					},
+					"elementBrowserEntryPoints": {
+						"type": "array",
+						"description": "Enables to set an entrypoint, from which to select folders by default.",
+						"items": {
+							"type": "object"
+						}
+					}
+				}
+			}
+		},
+		{
+			"if": {
+				"properties": {
+					"type": {
 						"const": "Json"
 					}
 				}
