@@ -793,9 +793,9 @@
 				"properties": {
 					"size": {
 						"type": "integer",
-						"description": "Abstract value for the height of the <textarea> field.",
+						"description": "Abstract value for the width of the <input> field.",
 						"minimum": 10,
-						"maximum": 20
+						"maximum": 50
 					},
 					"version": {
 						"type": "integer",
