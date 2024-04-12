@@ -6,20 +6,28 @@
 	"type": "object",
 	"$defs": {
 		"valuePicker": {
-			"type": "array",
-			"items": {
-				"type": "array",
-				"items": [
-					{
-						"type": "string",
-						"description": "Label"
-					},
-					{
-						"type": "string",
-						"description": "Value"
+			"type": "object",
+			"properties": {
+				"items": {
+					"type": "array",
+					"items": {
+						"type": "array",
+						"minItems": 2,
+						"maxItems": 2,
+						"items": [
+							{
+								"type": "string",
+								"description": "Label of the item"
+							},
+							{
+								"type": "string",
+								"description": "Value transferred to the input field"
+							}
+						]
 					}
-				]
-			}
+				}
+			},
+			"required": ["items"]
 		}
 	},
 	"properties": {
