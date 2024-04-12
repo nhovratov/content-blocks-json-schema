@@ -542,6 +542,23 @@
 					}
 				}
 			}
+		},{
+			"if": {
+				"properties": {
+					"type": {
+						"const": "FlexForm"
+					}
+				}
+			},
+			"then": {
+				"properties": {
+					"fields": {
+						"type": "array",
+						"description": "Fields to be used inside the FlexForm definition."
+					}
+				},
+				"required": ["fields"]
+			}
 		},
 		{
 			"if": {
