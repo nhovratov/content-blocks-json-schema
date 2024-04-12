@@ -272,18 +272,26 @@
 						"description": "Only necessary if more than one checkbox is desired.",
 						"items": {
 							"type": "object",
+							"required": [
+								"label"
+							],
 							"properties": {
 								"label": {
-									"type": "string"
+									"type": "string",
+									"description": "The label for the checkbox. Can be plain text or a localization reference."
 								},
 								"labelChecked": {
-									"type": "string"
+									"type": "string",
+									"description": "The label to be displayed when the checkbox is checked. Only relevant for labeled toggle type."
 								},
 								"labelUnchecked": {
-									"type": "string"
+									"type": "string",
+									"description": "The label to be displayed when the checkbox is unchecked. Only relevant for labeled toggle type."
 								},
 								"invertStateDisplay": {
-									"type": "boolean"
+									"type": "boolean",
+									"default": false,
+									"description": "Specifies whether the display of the checkbox's state should be inverted. Only relevant for labeled toggle type."
 								}
 							}
 						}
