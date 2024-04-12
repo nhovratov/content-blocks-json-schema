@@ -525,7 +525,10 @@
 							},
 							{
 								"type": "string",
-								"enum": ["common-image-types", "common-media-types "],
+								"enum": [
+									"common-image-types",
+									"common-media-types "
+								],
 								"description": "List of allowed file types."
 							}
 						]
@@ -539,7 +542,51 @@
 						"description": "Maximum number of items."
 					},
 					"cropVariants": {
-						"type": "object"
+						"type": "object",
+						"patternProperties": {
+							"^[a-zA-Z0-9]+$": {
+								"anyOf": [
+									{
+										"type": "string",
+										"description": "A simple string identifier for the crop variant."
+									},
+									{
+										"type": "object",
+										"properties": {
+											"title": {
+												"type": "string",
+												"description": "Title of the crop variant."
+											},
+											"allowedAspectRatios": {
+												"type": "object",
+												"additionalProperties": {
+													"type": "object",
+													"properties": {
+														"title": {
+															"type": "string",
+															"description": "Title for the aspect ratio."
+														},
+														"value": {
+															"oneOf": [
+																{
+																	"type": "string"
+																},
+																{
+																	"type": "number"
+																}
+															],
+															"description": "Value of the aspect ratio, represented as a string that can be interpreted as a float or a fraction."
+														}
+													}
+												}
+											}
+										},
+										"additionalProperties": false
+									}
+								]
+							}
+						},
+						"additionalProperties": false
 					}
 				}
 			}
