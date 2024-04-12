@@ -516,12 +516,12 @@
 						"type": "integer",
 						"description": "Abstract value for the width of the <textarea> field.",
 						"minimum": 10,
-						"maximum": 30
+						"maximum": 50
 					},
 					"rows": {
 						"type": "integer",
 						"description": "Abstract value for the height of the <textarea> field.",
-						"minimum": 0,
+						"minimum": 1,
 						"maximum": 20
 					},
 					"required": {
