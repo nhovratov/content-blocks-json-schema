@@ -781,6 +781,56 @@
 			"if": {
 				"properties": {
 					"type": {
+						"const": "Radio"
+					}
+				}
+			},
+			"then": {
+				"properties": {
+					"default": {
+						"oneOf": [
+							{
+								"type": "string"
+							},
+							{
+								"type": "integer"
+							}
+						]
+					},
+					"items": {
+						"type": "array",
+						"description": "List of radio buttons.",
+						"items": {
+							"type": "object",
+							"properties": {
+								"label": {
+									"type": "string"
+								},
+								"value": {
+									"oneOf": [
+										{
+											"type": "string"
+										},
+										{
+											"type": "integer"
+										}
+									]
+								}
+							},
+							"required": [
+								"value"
+							],
+							"additionalProperties": false
+						}
+					}
+				},
+				"required": ["items"]
+			}
+		},
+		{
+			"if": {
+				"properties": {
+					"type": {
 						"const": "Slug"
 					}
 				}
