@@ -872,6 +872,91 @@
 			"if": {
 				"properties": {
 					"type": {
+						"const": "Select"
+					}
+				}
+			},
+			"then": {
+				"properties": {
+					"default": {
+						"type": "string",
+						"description": "Default value set if a new record is created."
+					},
+					"renderType": {
+						"type": "string",
+						"enum": [
+							"selectSingle",
+							"selectCheckBox",
+							"selectSingleBox",
+							"selectTree",
+							"selectMultipleSideBySide"
+						]
+					},
+					"items": {
+						"type": "array",
+						"description": "List of <option> items.",
+						"items": {
+							"type": "object",
+							"properties": {
+								"label": {
+									"type": "string"
+								},
+								"value": {
+									"oneOf": [
+										{
+											"type": "string"
+										},
+										{
+											"type": "integer"
+										}
+									]
+								}
+							},
+							"required": [
+								"value"
+							],
+							"additionalProperties": false
+						}
+					},
+					"minitems": {
+						"type": "integer",
+						"description": "Minimum number of items."
+					},
+					"maxitems": {
+						"type": "integer",
+						"description": "Maximum number of items."
+					},
+					"allowedCustomProperties": {
+						"type": "array",
+						"items": {
+							"type": "string"
+						}
+					},
+					"foreign_table": {
+						"type": "string",
+						"description": "It is possible to reference another table instead of creating a new one."
+					},
+					"foreign_table_where": {
+						"type": "string",
+						"description": "It is possible to define a WHERE clause for the foreign table."
+					},
+					"treeConfig": {
+						"type": "object",
+						"properties": {
+							"parentField": {
+								"type": "string",
+								"description": "Field name of the parent field."
+							}
+						}
+					}
+				},
+				"required": ["renderType"]
+			}
+		},
+		{
+			"if": {
+				"properties": {
+					"type": {
 						"const": "Slug"
 					}
 				}
