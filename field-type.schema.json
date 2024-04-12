@@ -33,7 +33,8 @@
 	"properties": {
 		"identifier": {
 			"type": "string",
-			"description": "The identifier for the field."
+			"description": "The identifier for the field.",
+			"pattern": "^[a-zA-Z0-9_]+$"
 		},
 		"label": {
 			"type": "string",
@@ -66,7 +67,16 @@
 					"type": "string"
 				},
 				{
-					"type": "array"
+					"type": "object",
+					"properties": {
+						"AND": {
+							"type": "array",
+							"items": {
+								"type": "string"
+							}
+						}
+					},
+					"additionalProperties": false
 				}
 			]
 		},
