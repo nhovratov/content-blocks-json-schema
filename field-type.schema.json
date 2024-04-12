@@ -748,8 +748,27 @@
 						]
 					},
 					"generatorOptions": {
-						"type": "array",
-						"description": "Field names that will be considered during slug construction."
+						"type": "object",
+						"description": "Options related to the generation of the slug.",
+						"properties": {
+							"fields": {
+								"type": "array",
+								"description": "An array of fields to use for the slug generation.",
+								"items": {
+									"oneOf": [
+										{
+											"type": "string"
+										},
+										{
+											"type": "array",
+											"items": {
+												"type": "string"
+											}
+										}
+									]
+								}
+							}
+						}
 					},
 					"fallbackCharacter": {
 						"type": "string",
