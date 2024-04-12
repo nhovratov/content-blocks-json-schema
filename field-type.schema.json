@@ -568,6 +568,23 @@
 			"if": {
 				"properties": {
 					"type": {
+						"const": "Linebreak"
+					}
+				}
+			},
+			"then": {
+				"properties": {
+					"ignoreIfNotInPalette": {
+						"type": "boolean",
+						"description": "If set to true, this linebreak can also appear outside of a palette."
+					}
+				}
+			}
+		},
+		{
+			"if": {
+				"properties": {
+					"type": {
 						"const": "Link"
 					}
 				}
