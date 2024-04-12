@@ -219,6 +219,7 @@
 					"relationship": {
 						"type": "string",
 						"description": "Depending on the relationship, the category relations are stored in a different way.",
+						"default": "manyToMany",
 						"enum": ["oneToOne", "oneToMany", "manyToMany"]
 					},
 					"minitems": {
