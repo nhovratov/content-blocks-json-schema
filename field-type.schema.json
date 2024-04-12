@@ -872,6 +872,49 @@
 			"if": {
 				"properties": {
 					"type": {
+						"const": "Relation"
+					}
+				}
+			},
+			"then": {
+				"properties": {
+					"allowed": {
+						"type": "string",
+						"description": "Comma-separated table names that can be referenced."
+					},
+					"minitems": {
+						"type": "integer",
+						"description": "Minimum number of items."
+					},
+					"maxitems": {
+						"type": "integer",
+						"description": "Maximum number of items."
+					},
+					"suggestOptions": {
+						"type": "object",
+						"properties": {
+							"default": {
+								"type": "object",
+								"properties": {
+									"additionalSearchFields": {
+										"type": "string",
+										"description": "Fields to be included in search besides the label."
+									},
+									"addWhere": {
+										"type": "string",
+										"description": "Additional WHERE conditions for database queries."
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+		{
+			"if": {
+				"properties": {
+					"type": {
 						"const": "Select"
 					}
 				}
