@@ -432,10 +432,16 @@
 						"type": "object",
 						"properties": {
 							"lower": {
-								"type": "string"
+								"type": "string",
+								"format": "date-time",
+								"description": "Defines the minimum date in format 'H:i Y-m-d'.",
+								"pattern": "^\\d{2}:\\d{2} \\d{4}-\\d{2}-\\d{2}$"
 							},
 							"upper": {
-								"type": "string"
+								"type": "string",
+								"format": "date-time",
+								"description": "Defines the maximum date in format 'H:i Y-m-d'.",
+								"pattern": "^\\d{2}:\\d{2} \\d{4}-\\d{2}-\\d{2}$"
 							}
 						}
 					},
