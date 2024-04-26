@@ -272,9 +272,7 @@
 						"description": "Only necessary if more than one checkbox is desired.",
 						"items": {
 							"type": "object",
-							"required": [
-								"label"
-							],
+							"required": ["label"],
 							"properties": {
 								"label": {
 									"type": "string",
@@ -520,16 +518,11 @@
 					"allowed": {
 						"anyOf": [
 							{
-								"type": "string",
-								"description": "Any string representing a file type, such as 'jpg', 'png', etc."
+								"type": "string"
 							},
 							{
 								"type": "string",
-								"enum": [
-									"common-image-types",
-									"common-media-types "
-								],
-								"description": "List of allowed file types."
+								"enum": ["common-image-types","common-media-types"]
 							}
 						]
 					},
@@ -545,52 +538,38 @@
 						"type": "object",
 						"patternProperties": {
 							"^[a-zA-Z0-9]+$": {
-								"anyOf": [
-									{
-										"type": "string",
-										"description": "A simple string identifier for the crop variant."
+								"type": "object",
+								"properties": {
+									"title": {
+										"type": "string"
 									},
-									{
+									"allowedAspectRatios": {
 										"type": "object",
-										"properties": {
-											"title": {
-												"type": "string",
-												"description": "Title of the crop variant."
-											},
-											"allowedAspectRatios": {
+										"patternProperties": {
+											"^[a-zA-Z0-9]+$": {
 												"type": "object",
-												"additionalProperties": {
-													"type": "object",
-													"properties": {
-														"title": {
-															"type": "string",
-															"description": "Title for the aspect ratio."
-														},
-														"value": {
-															"oneOf": [
-																{
-																	"type": "string"
-																},
-																{
-																	"type": "number"
-																}
-															],
-															"description": "Value of the aspect ratio, represented as a string that can be interpreted as a float or a fraction."
-														}
+												"properties": {
+													"title": {
+														"type": "string"
+													},
+													"value": {
+														"type": ["number", "string"],
+														"pattern": "^[0-9]+ *\\/ *[0-9]+$"
 													}
-												}
+												},
+												"required": ["value"]
 											}
-										},
-										"additionalProperties": false
+										}
 									}
-								]
+								},
+								"required": ["title", "allowedAspectRatios"]
 							}
-						},
-						"additionalProperties": false
+						}
 					}
 				}
 			}
-		},{
+		},
+		{
 			"if": {
 				"properties": {
 					"type": {
