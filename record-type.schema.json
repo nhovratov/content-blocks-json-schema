@@ -164,6 +164,24 @@
 					"description": "If set, the labelField will be appended with this string, when copied.",
 					"type": "string"
 				}
+			},
+			"dependencies": {
+				"fallbackLabelFields": {
+					"oneOf": [
+						{
+							"properties": {
+								"labelField": {
+									"type": "string"
+								}
+							}
+						},
+						{
+							"not": {
+								"required": ["fallbackLabelFields"]
+							}
+						}
+					]
+				}
 			}
 		}
 	]
