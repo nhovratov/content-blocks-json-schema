@@ -16,7 +16,15 @@
 				},
 				"group": {
 					"description": "Group name the Content Block should be displayed in",
-					"type": "string",
+					"anyOf": [
+						{
+							"type": "string"
+						},
+						{
+							"type": "string",
+							"enum": ["common", "menu", "special", "forms", "plugins"]
+						}
+					],
 					"default": "common",
 					"examples": ["common", "menu", "special", "forms", "plugins"]
 				},

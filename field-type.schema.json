@@ -6,26 +6,43 @@
 	"type": "object",
 	"$defs": {
 		"valuePicker": {
-			"type": "array",
-			"items": {
-				"type": "array",
-				"items": [
-					{
-						"type": "string",
-						"description": "Label"
-					},
-					{
-						"type": "string",
-						"description": "Value"
+			"type": "object",
+			"properties": {
+				"items": {
+					"type": "array",
+					"items": {
+						"type": "array",
+						"minItems": 2,
+						"maxItems": 2,
+						"items": [
+							{
+								"type": "string",
+								"description": "Label of the item"
+							},
+							{
+								"oneOf": [
+									{
+										"type": "string",
+										"description": "Value transferred to the input field"
+									},
+									{
+										"type": "integer",
+										"description": "Value transferred to the input field"
+									}
+								]
+							}
+						]
 					}
-				]
-			}
+				}
+			},
+			"required": ["items"]
 		}
 	},
 	"properties": {
 		"identifier": {
 			"type": "string",
-			"description": "The identifier for the field."
+			"description": "The identifier for the field.",
+			"pattern": "^[a-zA-Z0-9_]+$"
 		},
 		"label": {
 			"type": "string",
@@ -58,7 +75,16 @@
 					"type": "string"
 				},
 				{
-					"type": "array"
+					"type": "object",
+					"properties": {
+						"AND": {
+							"type": "array",
+							"items": {
+								"type": "string"
+							}
+						}
+					},
+					"additionalProperties": false
 				}
 			]
 		},
@@ -193,6 +219,7 @@
 					"relationship": {
 						"type": "string",
 						"description": "Depending on the relationship, the category relations are stored in a different way.",
+						"default": "manyToMany",
 						"enum": ["oneToOne", "oneToMany", "manyToMany"]
 					},
 					"minitems": {
@@ -245,18 +272,24 @@
 						"description": "Only necessary if more than one checkbox is desired.",
 						"items": {
 							"type": "object",
+							"required": ["label"],
 							"properties": {
 								"label": {
-									"type": "string"
+									"type": "string",
+									"description": "The label for the checkbox. Can be plain text or a localization reference."
 								},
 								"labelChecked": {
-									"type": "string"
+									"type": "string",
+									"description": "The label to be displayed when the checkbox is checked. Only relevant for labeled toggle type."
 								},
 								"labelUnchecked": {
-									"type": "string"
+									"type": "string",
+									"description": "The label to be displayed when the checkbox is unchecked. Only relevant for labeled toggle type."
 								},
 								"invertStateDisplay": {
-									"type": "boolean"
+									"type": "boolean",
+									"default": false,
+									"description": "Specifies whether the display of the checkbox's state should be inverted. Only relevant for labeled toggle type."
 								}
 							}
 						}
@@ -414,10 +447,16 @@
 						"type": "object",
 						"properties": {
 							"lower": {
-								"type": "string"
+								"type": "string",
+								"format": "date-time",
+								"description": "Defines the minimum date in format 'H:i Y-m-d'.",
+								"pattern": "^\\d{2}:\\d{2} \\d{4}-\\d{2}-\\d{2}$"
 							},
 							"upper": {
-								"type": "string"
+								"type": "string",
+								"format": "date-time",
+								"description": "Defines the maximum date in format 'H:i Y-m-d'.",
+								"pattern": "^\\d{2}:\\d{2} \\d{4}-\\d{2}-\\d{2}$"
 							}
 						}
 					},
@@ -477,16 +516,15 @@
 						"description": "If disabled, an additional image or media palette will not be rendered."
 					},
 					"allowed": {
-						"oneOf": [
+						"anyOf": [
 							{
 								"type": "string"
 							},
 							{
-								"type": "array"
+								"type": "string",
+								"enum": ["common-image-types","common-media-types"]
 							}
-						],
-						"description": "List of allowed file types.",
-						"examples": ["common-image-types", "common-media-types"]
+						]
 					},
 					"minitems": {
 						"type": "integer",
@@ -497,7 +535,86 @@
 						"description": "Maximum number of items."
 					},
 					"cropVariants": {
-						"type": "object"
+						"type": "object",
+						"patternProperties": {
+							"^[a-zA-Z0-9]+$": {
+								"type": "object",
+								"properties": {
+									"title": {
+										"type": "string"
+									},
+									"allowedAspectRatios": {
+										"type": "object",
+										"patternProperties": {
+											"^[a-zA-Z0-9]+$": {
+												"type": "object",
+												"properties": {
+													"title": {
+														"type": "string"
+													},
+													"value": {
+														"type": ["number", "string"],
+														"pattern": "^[0-9]+ *\\/ *[0-9]+$"
+													}
+												},
+												"required": ["value"]
+											}
+										}
+									}
+								},
+								"required": ["title", "allowedAspectRatios"]
+							}
+						}
+					}
+				}
+			}
+		},
+		{
+			"if": {
+				"properties": {
+					"type": {
+						"const": "FlexForm"
+					}
+				}
+			},
+			"then": {
+				"properties": {
+					"fields": {
+						"type": "array",
+						"description": "Fields to be used inside the FlexForm definition."
+					}
+				},
+				"required": ["fields"]
+			}
+		},
+		{
+			"if": {
+				"properties": {
+					"type": {
+						"const": "Folder"
+					}
+				}
+			},
+			"then": {
+				"properties": {
+					"recursive": {
+						"type": "boolean",
+						"description": "If selected, files in the selected folder will be resolved recursively."
+					},
+					"minitems": {
+						"type": "integer",
+						"description": "Minimum number of items."
+					},
+					"maxitems": {
+						"type": "integer",
+						"description": "Maximum number of items."
+					},
+					"elementBrowserEntryPoints": {
+						"type": "array",
+						"description": "Enables to set an entrypoint, from which to select folders by default.",
+						"items": {
+							"type": "object"
+						}
 					}
 				}
 			}
@@ -516,12 +633,12 @@
 						"type": "integer",
 						"description": "Abstract value for the width of the <textarea> field.",
 						"minimum": 10,
-						"maximum": 30
+						"maximum": 50
 					},
 					"rows": {
 						"type": "integer",
 						"description": "Abstract value for the height of the <textarea> field.",
-						"minimum": 0,
+						"minimum": 1,
 						"maximum": 20
 					},
 					"required": {
@@ -568,6 +685,23 @@
 			"if": {
 				"properties": {
 					"type": {
+						"const": "Linebreak"
+					}
+				}
+			},
+			"then": {
+				"properties": {
+					"ignoreIfNotInPalette": {
+						"type": "boolean",
+						"description": "If set to true, this linebreak can also appear outside of a palette."
+					}
+				}
+			}
+		},
+		{
+			"if": {
+				"properties": {
+					"type": {
 						"const": "Link"
 					}
 				}
@@ -575,7 +709,7 @@
 			"then": {
 				"properties": {
 					"default": {
-						"type": "integer",
+						"type": "string",
 						"description": "Default value set if a new record is created."
 					},
 					"required": {
@@ -732,6 +866,184 @@
 			"if": {
 				"properties": {
 					"type": {
+						"const": "Radio"
+					}
+				}
+			},
+			"then": {
+				"properties": {
+					"default": {
+						"oneOf": [
+							{
+								"type": "string"
+							},
+							{
+								"type": "integer"
+							}
+						]
+					},
+					"items": {
+						"type": "array",
+						"description": "List of radio buttons.",
+						"items": {
+							"type": "object",
+							"properties": {
+								"label": {
+									"type": "string"
+								},
+								"value": {
+									"oneOf": [
+										{
+											"type": "string"
+										},
+										{
+											"type": "integer"
+										}
+									]
+								}
+							},
+							"required": [
+								"value"
+							],
+							"additionalProperties": false
+						}
+					}
+				},
+				"required": ["items"]
+			}
+		},
+		{
+			"if": {
+				"properties": {
+					"type": {
+						"const": "Relation"
+					}
+				}
+			},
+			"then": {
+				"properties": {
+					"allowed": {
+						"type": "string",
+						"description": "Comma-separated table names that can be referenced."
+					},
+					"minitems": {
+						"type": "integer",
+						"description": "Minimum number of items."
+					},
+					"maxitems": {
+						"type": "integer",
+						"description": "Maximum number of items."
+					},
+					"suggestOptions": {
+						"type": "object",
+						"properties": {
+							"default": {
+								"type": "object",
+								"properties": {
+									"additionalSearchFields": {
+										"type": "string",
+										"description": "Fields to be included in search besides the label."
+									},
+									"addWhere": {
+										"type": "string",
+										"description": "Additional WHERE conditions for database queries."
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+		{
+			"if": {
+				"properties": {
+					"type": {
+						"const": "Select"
+					}
+				}
+			},
+			"then": {
+				"properties": {
+					"default": {
+						"type": "string",
+						"description": "Default value set if a new record is created."
+					},
+					"renderType": {
+						"type": "string",
+						"enum": [
+							"selectSingle",
+							"selectCheckBox",
+							"selectSingleBox",
+							"selectTree",
+							"selectMultipleSideBySide"
+						]
+					},
+					"items": {
+						"type": "array",
+						"description": "List of <option> items.",
+						"items": {
+							"type": "object",
+							"properties": {
+								"label": {
+									"type": "string"
+								},
+								"value": {
+									"oneOf": [
+										{
+											"type": "string"
+										},
+										{
+											"type": "integer"
+										}
+									]
+								}
+							},
+							"required": [
+								"value"
+							],
+							"additionalProperties": false
+						}
+					},
+					"minitems": {
+						"type": "integer",
+						"description": "Minimum number of items."
+					},
+					"maxitems": {
+						"type": "integer",
+						"description": "Maximum number of items."
+					},
+					"allowedCustomProperties": {
+						"type": "array",
+						"items": {
+							"type": "string"
+						}
+					},
+					"foreign_table": {
+						"type": "string",
+						"description": "It is possible to reference another table instead of creating a new one."
+					},
+					"foreign_table_where": {
+						"type": "string",
+						"description": "It is possible to define a WHERE clause for the foreign table."
+					},
+					"treeConfig": {
+						"type": "object",
+						"properties": {
+							"parentField": {
+								"type": "string",
+								"description": "Field name of the parent field."
+							}
+						}
+					}
+				},
+				"required": ["renderType"]
+			}
+		},
+		{
+			"if": {
+				"properties": {
+					"type": {
 						"const": "Slug"
 					}
 				}
@@ -748,8 +1060,27 @@
 						]
 					},
 					"generatorOptions": {
-						"type": "array",
-						"description": "Field names that will be considered during slug construction."
+						"type": "object",
+						"description": "Options related to the generation of the slug.",
+						"properties": {
+							"fields": {
+								"type": "array",
+								"description": "An array of fields to use for the slug generation.",
+								"items": {
+									"oneOf": [
+										{
+											"type": "string"
+										},
+										{
+											"type": "array",
+											"items": {
+												"type": "string"
+											}
+										}
+									]
+								}
+							}
+						}
 					},
 					"fallbackCharacter": {
 						"type": "string",
@@ -774,9 +1105,9 @@
 				"properties": {
 					"size": {
 						"type": "integer",
-						"description": "Abstract value for the height of the <textarea> field.",
+						"description": "Abstract value for the width of the <input> field.",
 						"minimum": 10,
-						"maximum": 20
+						"maximum": 50
 					},
 					"version": {
 						"type": "integer",
