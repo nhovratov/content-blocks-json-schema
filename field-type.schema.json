@@ -575,7 +575,8 @@
 					"type": {
 						"const": "FlexForm"
 					}
-				}
+				},
+        "required": ["type"]
 			},
 			"then": {
 				"properties": {
@@ -868,7 +869,8 @@
 					"type": {
 						"const": "Radio"
 					}
-				}
+				},
+        "required": ["type"]
 			},
 			"then": {
 				"properties": {
@@ -961,7 +963,8 @@
 					"type": {
 						"const": "Select"
 					}
-				}
+				},
+        "required": ["type"]
 			},
 			"then": {
 				"properties": {
@@ -1037,7 +1040,7 @@
 						}
 					}
 				},
-				"required": ["renderType"]
+				"required": ["renderType", "items"]
 			}
 		},
 		{
