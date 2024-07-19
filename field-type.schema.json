@@ -134,7 +134,8 @@
 					"type": {
 						"const": "Text"
 					}
-				}
+				},
+        "required": ["type"]
 			},
 			"then": {
 				"properties": {
@@ -174,7 +175,8 @@
 					"type": {
 						"const": "Textarea"
 					}
-				}
+				},
+        "required": ["type"]
 			},
 			"then": {
 				"properties": {
@@ -212,7 +214,8 @@
 					"type": {
 						"const": "Category"
 					}
-				}
+				},
+        "required": ["type"]
 			},
 			"then": {
 				"properties": {
@@ -255,7 +258,8 @@
 					"type": {
 						"const": "Checkbox"
 					}
-				}
+				},
+        "required": ["type"]
 			},
 			"then": {
 				"properties": {
@@ -313,7 +317,8 @@
 					"type": {
 						"const": "Collection"
 					}
-				}
+				},
+        "required": ["type"]
 			},
 			"then": {
 				"properties": {
@@ -398,7 +403,8 @@
 					"type": {
 						"const": "Color"
 					}
-				}
+				},
+        "required": ["type"]
 			},
 			"then": {
 				"properties": {
@@ -426,7 +432,8 @@
 					"type": {
 						"const": "DateTime"
 					}
-				}
+				},
+        "required": ["type"]
 			},
 			"then": {
 				"properties": {
@@ -478,7 +485,8 @@
 					"type": {
 						"const": "Email"
 					}
-				}
+				},
+        "required": ["type"]
 			},
 			"then": {
 				"properties": {
@@ -507,7 +515,8 @@
 					"type": {
 						"const": "File"
 					}
-				}
+				},
+        "required": ["type"]
 			},
 			"then": {
 				"properties": {
@@ -575,7 +584,8 @@
 					"type": {
 						"const": "FlexForm"
 					}
-				}
+				},
+        "required": ["type"]
 			},
 			"then": {
 				"properties": {
@@ -593,7 +603,8 @@
 					"type": {
 						"const": "Folder"
 					}
-				}
+				},
+        "required": ["type"]
 			},
 			"then": {
 				"properties": {
@@ -625,7 +636,8 @@
 					"type": {
 						"const": "Json"
 					}
-				}
+				},
+        "required": ["type"]
 			},
 			"then": {
 				"properties": {
@@ -662,7 +674,8 @@
 					"type": {
 						"const": "Language"
 					}
-				}
+				},
+        "required": ["type"]
 			},
 			"then": {
 				"properties": {
@@ -687,7 +700,8 @@
 					"type": {
 						"const": "Linebreak"
 					}
-				}
+				},
+        "required": ["type"]
 			},
 			"then": {
 				"properties": {
@@ -704,7 +718,8 @@
 					"type": {
 						"const": "Link"
 					}
-				}
+				},
+        "required": ["type"]
 			},
 			"then": {
 				"properties": {
@@ -747,7 +762,8 @@
 					"type": {
 						"const": "Number"
 					}
-				}
+				},
+        "required": ["type"]
 			},
 			"then": {
 				"properties": {
@@ -798,7 +814,8 @@
 					"type": {
 						"const": "Palette"
 					}
-				}
+				},
+        "required": ["type"]
 			},
 			"then": {
 				"properties": {
@@ -817,7 +834,8 @@
 					"type": {
 						"const": "Password"
 					}
-				}
+				},
+        "required": ["type"]
 			},
 			"then": {
 				"properties": {
@@ -868,7 +886,8 @@
 					"type": {
 						"const": "Radio"
 					}
-				}
+				},
+        "required": ["type"]
 			},
 			"then": {
 				"properties": {
@@ -918,7 +937,8 @@
 					"type": {
 						"const": "Relation"
 					}
-				}
+				},
+        "required": ["type"]
 			},
 			"then": {
 				"properties": {
@@ -961,7 +981,8 @@
 					"type": {
 						"const": "Select"
 					}
-				}
+				},
+        "required": ["type"]
 			},
 			"then": {
 				"properties": {
@@ -1037,7 +1058,7 @@
 						}
 					}
 				},
-				"required": ["renderType"]
+				"required": ["renderType", "items"]
 			}
 		},
 		{
@@ -1046,7 +1067,8 @@
 					"type": {
 						"const": "Slug"
 					}
-				}
+				},
+        "required": ["type"]
 			},
 			"then": {
 				"properties": {
@@ -1099,7 +1121,8 @@
 					"type": {
 						"const": "Uuid"
 					}
-				}
+				},
+        "required": ["type"]
 			},
 			"then": {
 				"properties": {
