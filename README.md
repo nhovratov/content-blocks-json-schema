@@ -11,13 +11,16 @@ auto-completion and validation of your EditorInterface.yaml files.
 1. Open PhpStorm and switch to *File > Preferences > Languages & Frameworks > Schemas and DTDs > JSON Schema Mappings*
 2. Add new entry for Content Elements
     - **Schema file or URL**: `https://raw.githubusercontent.com/nhovratov/content-blocks-json-schema/main/content-element.schema.json`
-    - **File path Pattern**: `**/ContentBlocks/ContentElements/*/EditorInterface.yaml`
+    - **File path Pattern for version 0.8.2 or lower**: `**/ContentBlocks/ContentElements/*/EditorInterface.yaml`
+    - **File path Pattern for version 1.0.0 or higher**: `**/ContentBlocks/ContentElements/*/config.yaml`
 3. Add new entry for Page Types
    - **Schema file or URL**: `https://raw.githubusercontent.com/nhovratov/content-blocks-json-schema/main/page-type.schema.json`
-   - **File path Pattern**: `**/ContentBlocks/PageTypes/*/EditorInterface.yaml`
+   - **File path Pattern for version 0.8.2 or lower**: `**/ContentBlocks/PageTypes/*/EditorInterface.yaml`
+   - **File path Pattern for version 1.0.0 or higher**: `**/ContentBlocks/PageTypes/*/config.yaml`
 4. Add new entry for Record Types
    - **Schema file or URL**: `https://raw.githubusercontent.com/nhovratov/content-blocks-json-schema/main/record-type.schema.json`
-   - **File path Pattern**: `**/ContentBlocks/RecordTypes/*/EditorInterface.yaml`
+   - **File path Pattern for version 0.8.2 or lower**: `**/ContentBlocks/RecordTypes/*/EditorInterface.yaml`
+   - **File path Pattern for version 1.0.0 or higher**: `**/ContentBlocks/RecordTypes/*/config.yaml`
 
 ### Visual Studio Code
 
